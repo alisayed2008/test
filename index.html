@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>نسخة الصفحة - T-Sign (معدّلة 2)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#efefef;--accent:#b71c1c;--dark:#222;--muted:#7a7a7a;--container:1150px}
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:'Cairo',sans-serif;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased;line-height:1.45}
+    .wrap{max-width:var(--container);margin:28px auto;padding:20px}
+
+    /* HEADER */
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0}
+    .hdr-left{display:flex;align-items:center;gap:12px;order:1}
+    .logo{width:72px;height:72px;border-radius:50%;background:transparent;display:inline-block;object-fit:cover}
+    .btn-register{padding:9px 18px;border-radius:12px;border:2px solid #bdbdbd;background:transparent;font-weight:700}
+
+    /* right section: language, separator, nav, socials */
+    .hdr-right{display:flex;align-items:center;gap:12px;order:2}
+    .lang-switch{width:42px;height:42px;border-radius:8px;border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+    .vsep{width:1px;height:28px;background:#bfbfbf;margin:0 8px}
+    nav.toplinks{display:flex;gap:14px;align-items:center}
+    nav.toplinks a{color:var(--dark);text-decoration:none;font-weight:700;padding:8px 12px;border-radius:8px}
+    .socials{display:flex;gap:10px;align-items:center}
+    .socials img{width:26px;height:26px;cursor:pointer}
+
+    /* menu button for mobile */
+    .menu-btn{display:none;width:44px;height:44px;border-radius:8px;border:0;background:transparent;align-items:center;justify-content:center}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:48% 52%;gap:28px;margin-top:26px;align-items:start}
+    .left h1{font-size:88px;margin:6px 0 8px 0;font-weight:900;letter-spacing:1px}
+    .left .meta{color:var(--muted);font-size:15px;margin-bottom:12px}
+    .left p{margin:8px 0 18px 0;font-size:18px}
+    .cta{display:inline-block;padding:14px 34px;border-radius:12px;background:#222;color:#fff;text-decoration:none;font-weight:800;border:2px solid #222}
+
+    /* slider */
+    .slider-wrap{background:#fff;border-radius:12px;padding:10px;box-shadow:0 6px 0 rgba(0,0,0,0.06)}
+    .slider-top{width:100%;height:72px;border-radius:8px;overflow:hidden;margin-bottom:10px;background:#fafafa;display:flex;align-items:center;justify-content:center}
+    .slider-main{position:relative;overflow:hidden;border-radius:8px;height:320px}
+    .slides{display:flex;transition:transform .45s ease}
+    .slide{min-width:100%;height:320px}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .slider-controls{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .dots{display:flex;gap:10px;justify-content:center;flex:1}
+    .dot{height:8px;width:64px;border-radius:6px;background:#d0d0d0}
+    .dot.active{background:#444}
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);border-radius:8px;padding:8px;cursor:pointer;border:1px solid #ddd}
+    .arrow-left{left:12px}.arrow-right{right:12px}
+
+    .sep{height:1px;background:#d6d6d6;width:58%;margin:34px auto;border-radius:2px}
+
+    .info-row{display:grid;grid-template-columns:46% 54%;gap:28px;align-items:center}
+    .illustr img{width:100%;height:auto;display:block}
+    .info-box{background:var(--accent);color:#fff;padding:32px;border-radius:6px;font-weight:700}
+    .info-box p{margin:0;line-height:1.6}
+    .sub-sep{height:1px;background:#dcdcdc;width:58%;margin:18px auto;border-radius:2px}
+    .section-title{display:flex;justify-content:flex-end;align-items:center;margin-top:8px;margin-bottom:8px}
+    .section-title h3{margin:0;font-size:20px;color:var(--dark);font-weight:700}
+    .partners{display:flex;gap:28px;justify-content:center;align-items:center;margin:18px 0}
+    .partners img{height:56px;opacity:0.8}
+
+    /* FOOTER */
+    footer{background:#2f2f2f;color:#dcdcdc;padding:40px 24px;margin-top:40px}
+    .footer-inner{max-width:var(--container);margin:0 auto;display:flex;gap:20px;align-items:flex-start;justify-content:space-between}
+    .footer-left{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+    .footer-top{display:flex;gap:16px;align-items:center}
+    .logo-sm{width:110px;height:110px;border-radius:12px;object-fit:cover;background:transparent}
+    .footer-copy{font-size:13px;color:#cfcfcf;max-width:420px}
+    .footer-logos{display:flex;gap:14px;margin-top:8px}
+    .footer-logos img{height:36px;opacity:0.6}
+    .footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+    .contact-title{font-size:20px;font-weight:800;color:#fff}
+    .contact-row{display:flex;align-items:center;gap:10px}
+    .contact-row .username{font-weight:700}
+    .contact-icons{display:flex;gap:10px;align-items:center}
+    .contact-icons img{width:30px;height:30px}
+    .phones{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+    .phones a{color:#fff;text-decoration:none;font-weight:700}
+    .email{display:inline-block;padding:8px 12px;border-radius:6px;background:transparent;border-bottom:2px solid #cfcfcf;color:#fff;text-decoration:none}
+    .site-desc{font-size:12px;color:#cfcfcf;max-width:360px;text-align:right}
+
+    @media (max-width:980px){
+      /* On mobile show only logo + register + menu button */
+      .hero{grid-template-columns:1fr}
+      .info-row{grid-template-columns:1fr}
+      .left h1{font-size:58px}
+      .slider-main{height:220px}
+      .slide{height:220px}
+      .footer-inner{flex-direction:column;align-items:center;text-align:center}
+      .footer-right{align-items:center}
+
+      nav.toplinks,.socials,.lang-switch{display:none}
+      .menu-btn{display:flex}
+      .hdr-left{gap:8px}
+      .hdr-right{gap:8px}
+    }
+
+    /* simple overlay menu for mobile */
+    .overlay-menu{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:flex-start;justify-content:flex-end;padding:20px}
+    .overlay-panel{width:320px;background:#fff;border-radius:10px;padding:20px}
+    .overlay-panel a{display:block;padding:12px 8px;border-bottom:1px solid #eee;color:#222;text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <!-- logo on the VERY LEFT -->
+      <div class="hdr-left" style="margin-right:auto">
+        <img class="logo" src="assets/logo.png" alt="logo">
+        <button class="btn-register">تسجيل</button>
+      </div>
+
+      <!-- right side: language, separator, nav, socials, and mobile menu -->
+      <div class="hdr-right">
+        <button class="lang-switch" aria-label="تبديل اللغة"><img src="assets/lang.svg" alt="lang" style="width:22px;height:22px"></button>
+        <div class="vsep" aria-hidden="true"></div>
+        <nav class="toplinks" aria-label="القائمة الرئيسية">
+          <a href="#">الرئيسية</a>
+          <a href="#">تواصل</a>
+          <a href="#">سلتك</a>
+        </nav>
+        <div class="socials">
+          <img src="assets/social-fb.svg" alt="fb">
+          <img src="assets/social-tt.svg" alt="tt">
+          <img src="assets/social-ig.svg" alt="ig">
+        </div>
+
+        <!-- menu button visible only on mobile (you will replace svg) -->
+        <button class="menu-btn" id="menuBtn" aria-label="القائمة"><img src="assets/menu.svg" alt="menu" style="width:22px;height:22px"></button>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="left">
+        <h1>اختار</h1>
+        <div class="meta">اللون - المقاس - الطباعة - التطريز - النوع - الخاصة</div>
+        <p>كل دة تقدر تفصله وتختاره وتعدل عليه فآي وقت على زوقك وتشتريه ويوصلك لحد باب بيتك</p>
+        <a class="cta" href="#">ابدأ</a>
+        <p class="muted" style="margin-top:12px">مع تي - زايِن .. وليس</p>
+        <p class="muted" style="font-size:12px">جرّب صمم قطعة بدون تسجيل دخول او عملية دفع مسبقة</p>
+      </section>
+
+      <aside class="right">
+        <div class="slider-wrap">
+          <div class="slider-top"><img src="assets/slider-top-static.png" alt="static-banner"></div>
+          <div class="slider-main" id="sliderMain">
+            <div class="arrow arrow-left" id="prevBtn">◀</div>
+            <div class="arrow arrow-right" id="nextBtn">▶</div>
+            <div class="slides" id="slides">
+              <div class="slide"><img src="assets/slide1.jpg" alt="slide1"></div>
+              <div class="slide"><img src="assets/slide2.jpg" alt="slide2"></div>
+              <div class="slide"><img src="assets/slide3.jpg" alt="slide3"></div>
+            </div>
+          </div>
+
+          <div class="slider-controls">
+            <div style="width:60px"></div>
+            <div class="dots" id="dots">
+              <div class="dot active" data-index="0"></div>
+              <div class="dot" data-index="1"></div>
+              <div class="dot" data-index="2"></div>
+            </div>
+            <div style="width:60px"></div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="sep" aria-hidden="true"></div>
+
+    <section class="info-row">
+      <div class="illustr"><img src="assets/illustration.png" alt="illustr"></div>
+      <div class="info-box">
+        <p>تي زايْن ، هو مشروع يعطي الحرية الكاملة للعميل فاختيار ملابسه من ملابس عن طريق تصميم الملابس من خيارات عديدة مثل: اختيار اللون، الحجم، الطباعة، التطريز، وطرق الدفع - حتى تصل لباب بيته.</p>
+        <br>
+        <p>كأنه يصنعه من الصفر كامل على جهازه وبنفس سعر الاسواق وذلك يعطي شعور رائع عند استلامه للمنتج، كما يمكنه أيضًا طلب تصميم خاص به لا يعمله احد ليقوم موظفينا بتصميمه.</p>
+      </div>
+    </section>
+
+    <div class="sub-sep" aria-hidden="true"></div>
+
+    <div class="section-title"><h3>تابع أيضًا</h3></div>
+
+    <div class="partners" aria-hidden="true">
+      <img src="assets/partner1.png" alt="p1">
+      <img src="assets/partner2.png" alt="p2">
+      <img src="assets/partner3.png" alt="p3">
+      <img src="assets/partner4.png" alt="p4">
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-top">
+          <img class="logo-sm" src="assets/logo.png" alt="logo">
+          <div class="footer-copy">
+            <div style="font-weight:700">Intellectual property rights and all rights of the site are reserved.</div>
+            <div>حقوق الملكية الفكرية و جميع حقوق الموقع محفوظة</div>
+          </div>
+        </div>
+        <div class="footer-logos">
+          <img src="assets/partner-sm1.png" alt="l1">
+          <img src="assets/partner-sm2.png" alt="l2">
+          <img src="assets/partner-sm3.png" alt="l3">
+          <img src="assets/partner-sm4.png" alt="l4">
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <div style="text-align:right">
+          <div class="contact-title">يمكنك التواصل معنا على :</div>
+          <div class="contact-row" style="margin-top:6px">
+            <div class="username">@t_sign.art</div>
+            <div class="contact-icons">
+              <img src="assets/social-fb.svg" alt="fb">
+              <img src="assets/social-ig.svg" alt="ig">
+              <img src="assets/social-tt.svg" alt="tt">
+            </div>
+          </div>
+        </div>
+
+        <div class="phones">
+          <a href="tel:01002341982">01002341982</a>
+          <a href="tel:01509471842">01509471842</a>
+        </div>
+
+        <a class="email" href="mailto:info@t-sign.art">info@t-sign.art</a>
+        <div class="site-desc">تي زايْن ، مشروع يعطي الحرية الكاملة للعميل في اختيار وتخصيص ملابسه مع فريق تصميم جاهز لتلبية طلبك.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile overlay menu -->
+  <div class="overlay-menu" id="overlay">
+    <div class="overlay-panel">
+      <button id="closeMenu" style="float:left;border:0;background:transparent;font-weight:800;">إغلاق ×</button>
+      <nav style="margin-top:24px">
+        <a href="#">الرئيسية</a>
+        <a href="#">تواصل</a>
+        <a href="#">سلتك</a>
+        <a href="#">ابدأ</a>
+      </nav>
+      <div style="margin-top:10px;border-top:1px solid #eee;padding-top:10px;display:flex;gap:10px;align-items:center;">
+        <img src="assets/social-fb.svg" style="width:30px;height:30px">
+        <img src="assets/social-ig.svg" style="width:30px;height:30px">
+        <img src="assets/social-tt.svg" style="width:30px;height:30px">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // slider script (unchanged)
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      const prev = document.getElementById('prevBtn');
+      const next = document.getElementById('nextBtn');
+      let idx = 0, interval = 4000, timer;
+      function go(i){ idx = (i + slides.length) % slides.length; slidesEl.style.transform = `translateX(-${idx*100}%)`; dots.forEach((d,di)=> d.classList.toggle('active', di===idx)); }
+      function start(){ timer = setInterval(()=> go(idx+1), interval); }
+      function stop(){ clearInterval(timer); }
+      prev.addEventListener('click', ()=>{ stop(); go(idx-1); start(); });
+      next.addEventListener('click', ()=>{ stop(); go(idx+1); start(); });
+      dots.forEach(d=> d.addEventListener('click', e=>{ stop(); go(parseInt(d.dataset.index)); start(); }));
+      let startX = 0; const sMain = document.getElementById('sliderMain');
+      sMain.addEventListener('touchstart', e=> startX = e.touches[0].clientX);
+      sMain.addEventListener('touchend', e=>{ const endX = e.changedTouches[0].clientX; if (endX - startX > 30) { stop(); go(idx-1); start(); } else if (startX - endX > 30) { stop(); go(idx+1); start(); } });
+      go(0); start();
+    })();
+
+    // mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const overlay = document.getElementById('overlay');
+    const closeMenu = document.getElementById('closeMenu');
+    if(menuBtn){ menuBtn.addEventListener('click', ()=> overlay.style.display='flex'); }
+    if(closeMenu){ closeMenu.addEventListener('click', ()=> overlay.style.display='none'); }
+    // close when clicking outside panel
+    overlay.addEventListener('click', (e)=>{ if(e.target===overlay) overlay.style.display='none'; });
+  </script>
+</body>
+</html>
