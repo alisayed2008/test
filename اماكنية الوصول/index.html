@@ -1,0 +1,239 @@
+<!-- START: T-SIGN CONTACT SECTION (paste this where you want the content only) -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<div id="ts-contact-section" aria-labelledby="ts-contact-title" style="direction:rtl;">
+  <style>
+    /* Scoped styles for this block */
+    #ts-contact-section { font-family: 'Cairo', sans-serif; background: transparent; padding: 34px 0; color: #222; }
+    .ts-container { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+
+    /* top fields (side-by-side) */
+    .ts-fields { display:flex; gap:14px; align-items:flex-start; margin-bottom:16px; }
+    .ts-fields .ts-input { flex:1; min-width:0; }
+    .ts-input input[type="email"],
+    .ts-input input[type="text"],
+    .ts-textarea textarea {
+      width:100%;
+      font-family:inherit; /* same as message */
+      font-size:16px;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid #e6e6e6;
+      background:#fff; /* separate boxes (not grouped) */
+      box-shadow:0 2px 6px rgba(0,0,0,0.06);
+      color:#222;
+      outline:none;
+      resize:vertical;
+    }
+
+    /* textarea (big) */
+    .ts-textarea { position:relative; margin-bottom:10px; }
+    .ts-textarea textarea { min-height:220px; border-radius:12px; padding:18px; }
+
+    /* send icon (SVG) placed bottom-left of textarea area */
+    .ts-send-btn {
+      position:absolute; left:12px; bottom:12px;
+      width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+      border-radius:8px; cursor:pointer;
+      background:transparent; border:0;
+    }
+
+    /* center contact lines below */
+    .ts-contact-lines { text-align:center; margin-top:18px; color:#222; }
+    .ts-phones { font-size:22px; font-weight:600; margin-bottom:6px; }
+    .ts-email-link { display:block; text-decoration:underline; color:#222; font-weight:700; margin-bottom:6px; }
+    .ts-socials { display:flex; gap:10px; align-items:center; justify-content:center; margin-top:6px; }
+    .ts-socials .username { font-weight:700; margin-right:8px; color:#222; }
+
+    .ts-socials img { width:30px; height:30px; filter:none; }
+
+    /* partial divider */
+    .ts-divider { height:1px; background:#cfcfcf; width:50%; margin:34px auto; border-radius:2px; }
+
+    /* FAQ pills */
+    .ts-faq { max-width:920px; margin:26px auto 40px; padding: 0 16px; }
+    .ts-faq-title { text-align:center; font-size:20px; font-weight:700; margin-bottom:18px; color:#222; }
+    .ts-faq-list { display:flex; flex-direction:column; gap:12px; }
+
+    .ts-faq-item { border-radius:28px; border:1px solid #d9d9d9; padding:12px 18px; background:transparent; box-shadow:0 4px 8px rgba(0,0,0,0.03); display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .ts-faq-question { font-size:17px; color:#222; font-weight:600; }
+
+    .ts-faq-controls { display:flex; gap:12px; align-items:center; }
+    .ts-more-btn {
+      background:transparent; border:0; color:#333; font-weight:700; cursor:pointer; text-decoration:none;
+      padding:8px 12px; border-radius:12px;
+    }
+
+    /* hidden detail area */
+    .ts-faq-detail { overflow:hidden; max-height:0; transition:max-height .36s ease, opacity .22s ease; opacity:0; padding:0 18px; color:#444; font-size:15px; }
+    .ts-faq-item.open + .ts-faq-detail { opacity:1; max-height:320px; padding-top:10px; padding-bottom:12px; }
+
+    /* not-blue links */
+    a.ts-link { color:#222; text-decoration:none; }
+    a.ts-link:hover { text-decoration:underline; }
+
+    /* responsive */
+    @media (max-width:900px) {
+      .ts-fields { flex-direction:column; }
+      .ts-send-btn { left:10px; bottom:10px; width:44px; height:44px; }
+      .ts-phones { font-size:18px; }
+      .ts-faq-item { padding:12px; }
+    }
+  </style>
+
+  <div class="ts-container" id="ts-contact-content">
+    <!-- TOP: email & name fields (side by side on desktop, stacked on mobile) -->
+    <div class="ts-fields" role="form" aria-label="نموذج تواصل">
+      <div class="ts-input">
+        <input id="ts-email" type="email" placeholder="البريد الإلكتروني" required>
+      </div>
+      <div class="ts-input">
+        <input id="ts-name" type="text" placeholder="اسمك الثلاثي" required>
+      </div>
+    </div>
+
+    <!-- message textarea -->
+    <div class="ts-textarea" style="width:100%;">
+      <textarea id="ts-message" placeholder="اكتب رسالتك هنا" required></textarea>
+
+      <!-- send SVG placeholder: استبدل الصورة بالـ SVG الخاص بك -->
+      <button id="ts-send" class="ts-send-btn" aria-label="إرسال الرسالة" title="إرسال">
+        <img src="/assets/send-placeholder.svg" alt="send" style="width:26px;height:26px;">
+      </button>
+    </div>
+
+    <!-- contact lines below the form -->
+    <div class="ts-contact-lines" aria-live="polite">
+      <div class="ts-phones">01002541982 &nbsp; - &nbsp; 01509471842</div>
+      <a class="ts-email-link ts-link" href="mailto:info@t-sign.art">info@t-sign.art</a>
+
+      <div class="ts-socials" role="navigation" aria-label="روابط التواصل الاجتماعي">
+        <div class="username">@t_sign.art</div>
+        <!-- استبدل هذه الصور بالـSVG الخاصة بك -->
+        <img src="/assets/social-ig.svg" alt="instagram">
+        <img src="/assets/social-tt.svg" alt="tiktok">
+        <img src="/assets/social-fb.svg" alt="facebook">
+      </div>
+    </div>
+
+    <!-- thin partial divider -->
+    <div class="ts-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- FAQ list -->
+    <div class="ts-faq" aria-labelledby="ts-faq-heading">
+      <div id="ts-faq-heading" class="ts-faq-title">اسئلة متكررة</div>
+
+      <div class="ts-faq-list">
+        <!-- item 1 -->
+        <div class="ts-faq-item" data-id="faq1">
+          <div class="ts-faq-question">لماذا يجب أن ادفع عربون قبل الشراء ؟</div>
+          <div class="ts-faq-controls">
+            <button class="ts-more-btn" data-href="/faq/arabon">المزيد</button>
+          </div>
+        </div>
+        <div class="ts-faq-detail" id="detail-faq1">العربون يضمن بدء الإنتاج وتأمين المواد. يمكن استرجاعه وفق سياسة المتجر.</div>
+
+        <!-- item 2 -->
+        <div class="ts-faq-item" data-id="faq2">
+          <div class="ts-faq-question">كيف يتم تحويل تصميمي لمنتج فعلي ؟</div>
+          <div class="ts-faq-controls">
+            <button class="ts-more-btn" data-href="/faq/convert">المزيد</button>
+          </div>
+        </div>
+        <div class="ts-faq-detail" id="detail-faq2">نجهز التصميم للتحويل للطباعة أو التطريز وننتج عينة للموافقة قبل الإنتاج.</div>
+
+        <!-- item 3 -->
+        <div class="ts-faq-item" data-id="faq3">
+          <div class="ts-faq-question">كيف يتم حساب سعر المنتج وعلى أي أساس ؟</div>
+          <div class="ts-faq-controls">
+            <button class="ts-more-btn" data-href="/faq/pricing">المزيد</button>
+          </div>
+        </div>
+        <div class="ts-faq-detail" id="detail-faq3">السعر يعتمد على المقاس، خامة القماش، طريقة الطباعة/التطريز وكمية الإنتاج.</div>
+
+        <!-- item 4 -->
+        <div class="ts-faq-item" data-id="faq4">
+          <div class="ts-faq-question">!قد تأخر وقت استلام منتجي</div>
+          <div class="ts-faq-controls">
+            <button class="ts-more-btn" data-href="/faq/delay">المزيد</button>
+          </div>
+        </div>
+        <div class="ts-faq-detail" id="detail-faq4">نعتذر عن التأخير — تواصل معنا بالهاتف أو الإيميل لمعرفة حالة الطلب بالتفصيل.</div>
+
+        <!-- item 5 -->
+        <div class="ts-faq-item" data-id="faq5">
+          <div class="ts-faq-question">المنتج وصل لي بشكل غير مرضي</div>
+          <div class="ts-faq-controls">
+            <button class="ts-more-btn" data-href="/faq/complaint">المزيد</button>
+          </div>
+        </div>
+        <div class="ts-faq-detail" id="detail-faq5">أرسل شكوى مع صور للمنتج وسنراجع الطلب ونقترح حلولاً فورية.</div>
+      </div>
+
+      <a id="ts-more-link" class="ts-link" href="/support" style="display:block;text-align:center;margin-top:16px;font-weight:700">اضغط للمزيد</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      // send button -> mailto (opens user's mail client)
+      const sendBtn = document.getElementById('ts-send');
+      const formEmail = document.getElementById('ts-email');
+      const formName = document.getElementById('ts-name');
+      const formMsg = document.getElementById('ts-message');
+
+      function sendMail(){
+        const email = formEmail.value.trim();
+        const name = formName.value.trim();
+        const msg  = formMsg.value.trim();
+        if(!email || !name || !msg){ alert('برجاء ملء كل الحقول'); return; }
+        const to = 'info@t-sign.art';
+        const subject = encodeURIComponent('رسالة من الموقع — ' + name);
+        const body = encodeURIComponent('الاسم: ' + name + '\\nالبريد: ' + email + '\\n\\n' + msg);
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      }
+
+      if(sendBtn){ sendBtn.addEventListener('click', sendMail); }
+
+      // FAQ accordion behavior with smooth animation
+      const faqItems = Array.from(document.querySelectorAll('.ts-faq-item'));
+      faqItems.forEach(item => {
+        item.addEventListener('click', function(e){
+          // prevent clicking the "المزيد" button trigger accordion open
+          if(e.target && e.target.classList.contains('ts-more-btn')) return;
+          const nextDetail = item.nextElementSibling;
+          const isOpen = item.classList.contains('open');
+          // close all
+          document.querySelectorAll('.ts-faq-item').forEach(i => i.classList.remove('open'));
+          document.querySelectorAll('.ts-faq-detail').forEach(d => { d.style.maxHeight = null; d.style.opacity = 0; });
+          if(!isOpen && nextDetail){
+            item.classList.add('open');
+            nextDetail.style.opacity = 1;
+            nextDetail.style.maxHeight = nextDetail.scrollHeight + 'px';
+            // scroll a bit so user sees open detail (small smooth scroll)
+            setTimeout(()=> nextDetail.scrollIntoView({behavior:'smooth', block:'center'}), 180);
+          }
+        });
+      });
+
+      // "المزيد" buttons navigate to individual pages (data-href)
+      document.querySelectorAll('.ts-more-btn').forEach(btn => {
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
+          const href = btn.getAttribute('data-href') || '/';
+          window.location.href = href;
+        });
+      });
+
+      // ensure details collapsed on load
+      document.querySelectorAll('.ts-faq-detail').forEach(d => { d.style.maxHeight = null; d.style.opacity = 0; });
+
+      // small accessibility: enter key on faq-item behaves like click
+      document.querySelectorAll('.ts-faq-item').forEach(item => {
+        item.tabIndex = 0;
+        item.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') item.click(); });
+      });
+    })();
+  </script>
+</div>
+<!-- END: T-SIGN CONTACT SECTION -->
