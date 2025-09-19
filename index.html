@@ -416,32 +416,9 @@
     if(window.innerWidth <= 980){ document.getElementById('leftCol').style.display = 'none'; }
 
   </script>
-/* ضعه في ملف css العام أو داخل <style> */
-html, body {
-  height: 100%;
-  margin: 0;
-}
 
-/* اجعل body عمودياً ويمتد لارتفاع الشاشة */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* مهم */
-}
-
-/* هذا العنصر يجب أن يحيط كل المحتوى الوسطي بين header و footer
-   إذا اسمته main أو .center-wrap أو .page-wrap ضع الاسم نفسه هنا */
-main, .center-wrap, .page-wrap {
-  flex: 1 0 auto; /* يأخذ المساحة المتبقية ويطرد الفوتر للأسفل */
-}
-
-/* تأكد أن الفوتر لا يستخدم position:absolute أو display:none */
-footer {
-  flex: 0 0 auto; /* ثابت بحجمه الطبيعي */
-  /* إن أردت الفوتر مرئياً دائماً يمكنك إضافة z-index إن كان هناك عناصر متراكبة */
-  /* position: relative; z-index: 10; */
-}
-
+ <style> 
 </body>
 </html>
+
 
