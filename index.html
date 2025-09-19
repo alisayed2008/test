@@ -160,112 +160,107 @@
       <button class="lang-btn" id="langBtn" aria-label="تغيير اللغة"><img src="lang-icon.svg" alt="lang" /></button>
     </div>
   </header>
+<!-- بداية: جزء المحتوى فقط -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-  <div class="wrap">
-    <div class="main">
-      <aside class="left" id="leftCol">
-        <div class="topics" id="topicsList">
-          <button class="topic-btn" data-link="#topic1">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic2">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic3">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic4">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic5">الموضوع الفلاني</button>
-        </div>
-      </aside>
+<style>
+  :root{
+    --page-bg: #dcdcdc;
+    --card-bg: #ffffff;
+    --card-stroke: rgba(0,0,0,0.15);
+    --accent: #8b0000; /* لون الهيدر/أو اللون الذي تريده */
+    --max-width: 1100px;
+    --card-padding: 28px;
+    --gap: 14px;
+  }
 
-      <main class="center">
-        <div class="center-inner">
-          <div class="search-row">
-            <div class="search" role="search">
-              <input id="searchInput" type="search" placeholder="البحث" aria-label="بحث" autocomplete="off" />
-              <div class="icon"><img src="search-icon.svg" alt="بحث" style="width:18px;height:18px" /></div>
-            </div>
-            <div class="suggestions" id="suggestions" role="listbox"></div>
-          </div>
+  html,body{height:100%;margin:0;font-family:'Cairo',sans-serif;background:var(--page-bg);direction:rtl}
+  .center-wrap{max-width:var(--max-width);margin:36px auto;padding:0 16px;box-sizing:border-box;text-align:center}
 
-          <article class="article" id="article">
-            <h1>رأس الموضوع</h1>
-            <p>التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل <a href="#">التفاصيل</a></p>
-            <p>التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل <a href="#">التفاصيل</a></p>
+  /* العنوان فوق المربع */
+  .support-title{font-weight:900;margin:8px 0 20px}
+  .support-title h1{font-size:clamp(30px,6vw,56px);margin:0}
+  .support-title .subtitle{font-size:22px;color:#111;margin-top:8px;font-weight:700}
 
-            <div style="margin-top:12px;display:flex;justify-content:flex-start;gap:12px;align-items:flex-start">
-              <div style="flex:1">
-                <p style="color:var(--muted)">كل الكلام والتنسيق هنا قابل للتعديل — الحجم يتغير بحسب المحتوى</p>
-              </div>
-              <div style="width:220px;flex:0 0 220px">
-                <img src="article-illustration.png" alt="article image" style="max-width:100%;border-radius:8px;border:1px solid rgba(0,0,0,0.06)" />
-              </div>
-            </div>
-          </article>
+  /* الصندوق الكيرفي مع ستروك خفيف */
+  .support-card{
+    background:var(--card-bg);
+    border-radius:18px;
+    padding:var(--card-padding);
+    border:2px solid var(--card-stroke);
+    box-shadow:none;
+    box-sizing:border-box;
+    /* يجعل الصندوق يتمدد عرضياً حسب الحاوية */
+    width:100%;
+  }
 
-          <div class="poll-area">
-            <div class="poll" aria-live="polite">
-              <div class="question">هل وجدت هذا الموضوع مفيداً؟</div>
-              <div class="buttons">
-                <button class="yes" id="btnYes">نعم</button>
-                <button class="no" id="btnNo">لا</button>
-              </div>
-            </div>
-          </div>
+  /* شبكة المواضيع: 3 أعمدة على الديسكتوب */
+  .topics-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:var(--gap);
+    align-items:stretch;
+    margin-top:6px;
+  }
 
-          <div class="support-card">
-            <div class="support-left">
-              <h2>اختار</h2>
-              <p style="font-size:14px;color:var(--muted)">اللون - المقاس - الطباعة - التوصيل - النوع - الخاصة</p>
-              <p class="highlight">كل ده تقدر توصله وتختاره وتعدل عليه فيه <strong>وقت على زوقك</strong> وتشتريه ويوصلك لحد باب بيتك</p>
-              <a class="support-btn" id="supportLink" href="#">ابدا</a>
-              <p style="font-size:12px;color:var(--muted);margin-top:8px">مع تـي-ساين .. وبس</p>
-            </div>
-            <div class="support-illustration">
-              <img src="support-illustration.png" alt="support illustration" />
-            </div>
-          </div>
+  /* كل موضوع كمربع/زر داخلي ملائم */
+  .topic-item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 12px;
+    background:transparent;
+    border-radius:8px;
+    border:1px solid rgba(0,0,0,0.08);
+    box-shadow:0 6px 12px rgba(0,0,0,0.04);
+    font-weight:700;
+    text-decoration:none;
+    color:#111;
+    transition:transform .16s ease,box-shadow .16s ease;
+    min-height:56px;
+  }
+  .topic-item:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,0.06)}
 
-        </div>
-      </main>
-    </div>
+  /* responsive: 2 columns on medium, 1 on small */
+  @media (max-width:900px){
+    .topics-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media (max-width:480px){
+    .topics-grid{grid-template-columns:repeat(1,minmax(0,1fr));}
+  }
+
+  /* اختياري: تضييق المسافة داخل العنصر لو النص طويل */
+  .topic-item .label{padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+</style>
+
+<div class="center-wrap">
+  <div class="support-title" aria-hidden="false">
+    <h1>مركز المساعدة والدعم</h1>
+    <div class="subtitle">t-sign.shop</div>
   </div>
 
-  <button class="show-topics" id="showTopicsBtn" aria-label="اضغط لإظهار المواضيع">
-    <img src="topics-toggle.svg" alt="show topics" style="width:40px;height:40px" />
-  </button>
+  <div class="support-card" role="region" aria-label="قائمة المواضيع">
+    <!-- شبكة المواضيع: أضف أو احذف <a> حسب حاجتك، كل عنصر له href مختلف -->
+    <div class="topics-grid">
+      <a class="topic-item" href="/support/topic-1"><span class="label">الموضوع الفلاني 1</span></a>
+      <a class="topic-item" href="/support/topic-2"><span class="label">الموضوع الفلاني 2</span></a>
+      <a class="topic-item" href="/support/topic-3"><span class="label">الموضوع الفلاني 3</span></a>
 
-  <div class="topics-overlay" id="topicsOverlay"></div>
-  <div class="topics-panel" id="topicsPanel" style="display:none">
-    <div id="topicsPanelList"></div>
-  </div>
+      <a class="topic-item" href="/support/topic-4"><span class="label">الموضوع الفلاني 4</span></a>
+      <a class="topic-item" href="/support/topic-5"><span class="label">الموضوع الفلاني 5</span></a>
+      <a class="topic-item" href="/support/topic-6"><span class="label">الموضوع الفلاني 6</span></a>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">
-        <img src="logo-footer.png" alt="logo footer" />
-        <div style="margin-top:12px;color:#ccc">© 2025 t-sign</div>
-        <div class="socials">
-          <a href="#"><img src="icon-fb.svg" alt="fb" /></a>
-          <a href="#"><img src="icon-ig.svg" alt="ig" /></a>
-          <a href="#"><img src="icon-tt.svg" alt="tt" /></a>
-        </div>
-      </div>
+      <a class="topic-item" href="/support/topic-7"><span class="label">الموضوع الفلاني 7</span></a>
+      <a class="topic-item" href="/support/topic-8"><span class="label">الموضوع الفلاني 8</span></a>
+      <a class="topic-item" href="/support/topic-9"><span class="label">الموضوع الفلاني 9</span></a>
 
-      <div class="footer-cols">
-        <div class="footer-col">
-          <h4>مركز المساعدة</h4>
-          <a href="#">مركز الأمان</a><br>
-          <a href="#">إمكانية الوصول</a>
-        </div>
-        <div class="footer-col">
-          <h4>عنا</h4>
-          <a href="#">تي ساين للشركات والمؤسسات</a><br>
-          <a href="#">السياسات والقوانين</a>
-        </div>
-        <div class="footer-col">
-          <h4>الدعم</h4>
-          <a href="#">تواصل</a><br>
-          <a href="#">الشركة</a>
-        </div>
-      </div>
+      <!-- أضف صفوف أكثر كما تريد — الصندوق سيتوسع طولياً تلقائياً -->
     </div>
-    <div class="copyright">تي ساين - كل الحقوق محفوظة</div>
+  </div>
+</div>
+<!-- نهاية جزء المحتوى -->
+
   </footer>
 
   <div class="toast" id="toast">تم</div>
@@ -388,4 +383,5 @@
   </script>
 </body>
 </html>
+
 
