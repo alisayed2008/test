@@ -4,6 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Support - Help Center</title>
+  <!--
+    Image / icon filenames (replace with your own files in the folder):
+    - logo.svg
+    - logo-footer.svg
+    - lang-icon.svg
+    - search-icon.svg
+    - support-icon.svg
+    - topics-toggle.svg
+    - article-illustration.png
+    - support-illustration.png
+    - icon-fb.svg, icon-ig.svg, icon-tt.svg
+    Note: the contact section's send icon placeholder: /assets/send-placeholder.svg
+  -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -25,12 +38,14 @@
     header{background:var(--maroon);color:#fff;padding:18px 0 24px;position:relative}
     .header-inner{display:flex;align-items:center;gap:18px;max-width:1100px;margin:0 auto;padding:0 12px}
 
+    /* logo - white via filter (best to provide white SVG) */
     .logo-box{width:120px;height:84px;display:flex;align-items:center;justify-content:center;transform:translateY(6px);background:transparent;border:0}
     .logo-box img{max-width:90%;max-height:90%;display:block;filter:invert(1) brightness(2)}
 
     .nav-buttons{display:flex;gap:12px;margin-inline-end:auto}
     .nav-buttons a{background:transparent;border:2px solid rgba(255,255,255,0.15);padding:8px 18px;border-radius:8px;color:#fff;font-weight:600;text-decoration:none}
 
+    /* language button: transparent (no white bg/stroke) */
     .lang-btn{margin-inline-end:12px;border-radius:8px;background:transparent;color:#fff;padding:6px;display:inline-flex;align-items:center;justify-content:center;border:0}
     .lang-btn img{width:22px;height:22px;filter:invert(1) brightness(2)}
 
@@ -41,6 +56,7 @@
     .left{width:220px;flex:0 0 220px}
     .topics{background:var(--card);border-radius:12px;padding:12px;border:2px solid var(--stroke);max-height:78vh;overflow:auto}
 
+    /* modern topic buttons */
     .topic-btn{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);margin-bottom:10px;background:transparent;cursor:pointer;font-weight:700;letter-spacing:0.2px;box-shadow:0 6px 18px rgba(0,0,0,0.04);transition:transform .18s ease,box-shadow .18s ease}
     .topic-btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.06)}
 
@@ -92,6 +108,7 @@
 
     .copyright{margin-top:18px;text-align:center;color:#ddd;font-size:14px}
 
+    /* show-topics: mobile button fixed on left for LTR pages */
     .show-topics{display:none;position:fixed;left:18px;bottom:120px;background:#fff;border-radius:12px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12);z-index:1000}
 
     .topics-panel{position:fixed;left:12px;top:110px;width:300px;max-height:70vh;background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(0,0,0,0.06);overflow:auto;z-index:1001;display:none}
@@ -138,10 +155,11 @@
         <a href="#">About</a>
       </nav>
 
- <a class="lang-btn" id="langBtn" aria-label="Change language" href="https://support.t-sign.shop/"><img src="lang-icon.svg" alt="lang" /></a>    </div>
+      <!-- language link: keep structure, now links to language page -->
+      <a class="lang-btn" id="langBtn" aria-label="Change language" href="https://support.t-sign.shop/"><img src="lang-icon.svg" alt="lang" /></a>
     </div>
   </header>
-  <!-- بداية: جزء المحتوى فقط -->
+ <!-- بداية: جزء المحتوى فقط -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
@@ -279,6 +297,7 @@
   <div class="toast" id="toast">Done</div>
 
   <script>
+    // Mobile menu toggle
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
     const langBtn = document.getElementById('langBtn');
@@ -296,7 +315,7 @@
         mainNav.style.borderRadius = '8px';
         mainNav.style.zIndex = '9999';
         langBtn.style.display = 'inline-flex';
-        document.getElementById('suggestions').style.display = 'none';
+        document.getElementById('suggestions') && (document.getElementById('suggestions').style.display = 'none');
       }else{
         mainNav.style.display = '';
         mainNav.style.position = '';
@@ -306,6 +325,7 @@
       }
     });
 
+    // Topics for search and mobile/desktop panel
     const topicBtns = Array.from(document.querySelectorAll('.topic-btn'));
     const topicsPanelList = document.getElementById('topicsPanelList');
     topicBtns.forEach((b,idx)=>{
@@ -316,9 +336,10 @@
       a.style.padding = '10px 6px';
       a.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
       a.addEventListener('click', ()=> closeTopics());
-      topicsPanelList.appendChild(a);
+      topicsPanelList && topicsPanelList.appendChild(a);
     });
 
+    // Show topics button & panel (mobile only) - fixed position
     const showTopicsBtn = document.getElementById('showTopicsBtn');
     const topicsOverlay = document.getElementById('topicsOverlay');
     const topicsPanel = document.getElementById('topicsPanel');
@@ -330,49 +351,65 @@
       topicsOverlay.style.display = 'none';
       topicsPanel.style.display = 'none';
     }
-    showTopicsBtn.addEventListener('click', openTopics);
-    topicsOverlay.addEventListener('click', closeTopics);
+    showTopicsBtn && showTopicsBtn.addEventListener('click', ()=>{ if(topicsPanel.style.display === 'block') closeTopics(); else openTopics(); });
+    topicsOverlay && topicsOverlay.addEventListener('click', closeTopics);
 
-    const toast = document.getElementById('toast');
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.style.display = 'block';
-      setTimeout(()=>{toast.style.display='none'},1800);
-    }
-    document.getElementById('btnYes').addEventListener('click',()=> showToast('Thanks for your feedback'));
-    document.getElementById('btnNo').addEventListener('click',()=> showToast('Feedback saved'));
-
-    document.getElementById('langBtn').addEventListener('click',()=>{
-      window.location.href = "index-ar.html"; // link to Arabic version
-    });
-
-    const searchInput = document.getElementById('searchInput');
-    const suggestionsBox = document.getElementById('suggestions');
-    const suggestionsData = ['Topic One','Topic Two','Topic Three','Topic Four','Topic Five'];
-    searchInput.addEventListener('input',()=>{
-      const q = searchInput.value.trim().toLowerCase();
-      if(!q){suggestionsBox.style.display='none';return}
-      suggestionsBox.innerHTML = '';
-      const results = suggestionsData.filter(x=> x.toLowerCase().includes(q));
-      if(!results.length){suggestionsBox.style.display='none';return}
-      results.forEach(r=>{
-        const a = document.createElement('a');
-        a.href = '#';
-        a.textContent = r;
-        suggestionsBox.appendChild(a);
+    // topic buttons click -> navigate
+    topicBtns.forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const link = b.dataset.link || '#';
+        window.location.hash = link;
       });
-      suggestionsBox.style.display = 'block';
     });
-    document.addEventListener('click',e=>{
-      if(!suggestionsBox.contains(e.target) && e.target!==searchInput){
-        suggestionsBox.style.display = 'none';
-      }
+
+    // Search: live suggestions from the topic buttons
+    const searchInput = document.getElementById('searchInput');
+    const suggestions = document.getElementById('suggestions');
+    function showSuggestions(items){
+      suggestions.innerHTML = '';
+      if(!items.length){ suggestions.style.display = 'none'; return; }
+      items.forEach(it=>{
+        const a = document.createElement('a');
+        a.href = it.link;
+        a.textContent = it.label;
+        a.addEventListener('click', (e)=>{ suggestions.style.display = 'none'; });
+        suggestions.appendChild(a);
+      });
+      suggestions.style.display = 'block';
+    }
+    searchInput && searchInput.addEventListener('input', ()=>{
+      const q = searchInput.value.trim();
+      if(!q){ suggestions && (suggestions.style.display = 'none'); return; }
+      const found = topicBtns.map(b=>({label:b.textContent,link:b.dataset.link||'#'})).filter(t=>t.label.toLowerCase().indexOf(q.toLowerCase()) !== -1);
+      suggestions && showSuggestions(found);
     });
+    searchInput && searchInput.addEventListener('blur', ()=> setTimeout(()=> suggestions && (suggestions.style.display = 'none'),200));
+
+    // Poll yes/no -> toast
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const toast = document.getElementById('toast');
+    function showToast(txt){
+      toast.textContent = txt;
+      toast.style.display = 'block';
+      setTimeout(()=>{ toast.style.display = 'none'; }, 2500);
+    }
+    btnYes && btnYes.addEventListener('click', ()=>{ showToast('We\'re happy to hear that'); });
+    btnNo && btnNo.addEventListener('click', ()=>{ showToast('Your feedback has been received'); });
+
+    // support Link button placeholder
+    const supportLinkBtn = document.getElementById('supportLink');
+    supportLinkBtn && supportLinkBtn.addEventListener('click',(e)=>{
+      // e.preventDefault(); window.location.href = 'YOUR_PRODUCT_LINK';
+    });
+
+    // responsive initial state
+    window.addEventListener('resize', ()=>{
+      if(window.innerWidth > 980){ document.getElementById('leftCol').style.display = 'block'; }
+      else{ document.getElementById('leftCol').style.display = 'none'; }
+    });
+    if(window.innerWidth <= 980){ document.getElementById('leftCol').style.display = 'none'; }
+
   </script>
 </body>
 </html>
-
-
-
-
-
