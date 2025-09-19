@@ -4,6 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Support - نموذج الدعم</title>
+  <!--
+    *** اسماء الصور والأيقونات (استبدل الملفات بهذه الملفات داخل المجلد):
+    - logo.svg                (اللوجو الرئيسي داخل الهيدر)   
+    - logo-footer.svg         (للفوتر)
+    - lang-icon.svg           (أيقونة تغيير اللغة - ستضع SVG أبيض أو شفاف)
+    - search-icon.svg         (أيقونة البحث داخل الحقل)
+    - support-icon.svg        (أيقونة "تحدث مع الدعم" لو احتجت)
+    - topics-toggle.svg       (زر إظهار المواضيع للموبايلات)
+    - article-illustration.png (الصورة على يمين الموضوع)
+    - support-illustration.png (الصورة بجنب بطاقة "اختار")
+    - icon-fb.svg, icon-ig.svg, icon-tt.svg  (أيقونات السوشيال)
+    
+    أيقونة داخل الموضوع (الصورة الصغيرة) اسمها: article-illustration.png
+  -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -13,8 +27,8 @@
       --stroke:#bdbdbd;
       --muted:#666;
       --accent:#1565c0;
-      --content-width:760px; /* قابل للتعديل */
-      --gap:18px; /* المسافة بين المربعات */
+      --content-width:760px;
+      --gap:18px;
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:'Cairo',sans-serif;background:var(--bg);color:#111}
@@ -24,13 +38,17 @@
 
     header{background:var(--maroon);color:#fff;padding:18px 0 24px;position:relative}
     .header-inner{display:flex;align-items:center;gap:18px;max-width:1100px;margin:0 auto;padding:0 12px}
+
+    /* اللوجو: اضبطنا ليكن أبيض عبر فلتر (الأفضل أن تضع SVG أبيض مباشرة) */
     .logo-box{width:120px;height:84px;display:flex;align-items:center;justify-content:center;transform:translateY(6px);background:transparent;border:0}
-    .logo-box img{max-width:90%;max-height:90%;display:block}
+    .logo-box img{max-width:90%;max-height:90%;display:block;filter:invert(1) brightness(2)}
 
     .nav-buttons{display:flex;gap:12px;margin-inline-start:auto}
     .nav-buttons a{background:transparent;border:2px solid rgba(255,255,255,0.15);padding:8px 18px;border-radius:8px;color:#fff;font-weight:600;text-decoration:none}
 
-    .lang-btn{margin-inline-start:12px;border-radius:8px;background:#fff;color:var(--maroon);padding:8px 10px;display:inline-flex;align-items:center;justify-content:center}
+    /* زر اللغة: شلنا الخلفية البيضاء والستروك */
+    .lang-btn{margin-inline-start:12px;border-radius:8px;background:transparent;color:#fff;padding:6px;display:inline-flex;align-items:center;justify-content:center;border:0}
+    .lang-btn img{width:22px;height:22px;filter:invert(1) brightness(2)}
 
     .mobile-menu{display:none;margin-left:12px;border:0;background:transparent;color:#fff;font-size:26px}
 
@@ -38,46 +56,46 @@
 
     .left{width:220px;flex:0 0 220px}
     .topics{background:var(--card);border-radius:12px;padding:12px;border:2px solid var(--stroke);max-height:78vh;overflow:auto}
-    .topic-btn{display:block;width:100%;text-align:center;padding:10px;border-radius:6px;border:1px solid var(--stroke);margin-bottom:10px;background:#fafafa;cursor:pointer}
 
-    /* center column */
+    /* ستايل عصري للأزرار: خطوط أنظف وحواف أكبر وظل خفيف */
+    .topic-btn{display:block;width:100%;text-align:right;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);margin-bottom:10px;background:transparent;cursor:pointer;font-weight:700;letter-spacing:0.2px;box-shadow:0 6px 18px rgba(0,0,0,0.04);transition:transform .18s ease,box-shadow .18s ease}
+    .topic-btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.06)}
+
     .center{flex:1;display:flex;flex-direction:column;gap:var(--gap);align-items:center}
     .center-inner{width:var(--content-width);max-width:100%}
-
-    /* ensure equal width for main boxes and space between them */
     .center-inner > *{margin-bottom:var(--gap)}
 
     .search-row{display:flex;align-items:center;gap:12px;position:relative;width:100%}
-    .search{flex:1;background:var(--card);border-radius:12px;padding:10px;border:2px solid var(--stroke);display:flex;align-items:center;width:100%}
+    .search{flex:1;background:var(--card);border-radius:12px;padding:10px;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;width:100%}
     .search input{border:0;outline:none;font-size:18px;width:100%;direction:rtl}
-    .search .icon{width:34px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid var(--stroke)}
+    .search .icon{width:34px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center}
 
-    /* suggestions: lower z-index than menu, but menu hides suggestions when open */
-    .suggestions{position:absolute;left:0;right:0;top:56px;background:var(--card);border:2px solid var(--stroke);border-radius:8px;padding:6px;max-height:240px;overflow:auto;display:none;z-index:60}
+    .suggestions{position:absolute;left:0;right:0;top:56px;background:var(--card);border:1px solid rgba(0,0,0,0.06);border-radius:8px;padding:6px;max-height:240px;overflow:auto;display:none;z-index:60}
     .suggestions a{display:block;padding:8px;border-radius:6px;text-decoration:none;color:#111}
     .suggestions a:hover{background:#f4f4f4}
 
-    .article{background:var(--card);border-radius:18px;padding:22px;border:2px solid var(--stroke);min-height:240px;width:100%}
+    .article{background:var(--card);border-radius:18px;padding:22px;border:1px solid rgba(0,0,0,0.06);min-height:240px;width:100%}
     .article h1{font-size:34px;margin:0 0 12px;font-weight:900}
     .article h2{font-size:26px;margin:12px 0;font-weight:700}
     .article p{line-height:1.6;color:var(--muted);margin:6px 0;font-size:16px}
     .article p a{font-weight:700;color:var(--accent)}
 
     .poll-area{display:flex;gap:12px;align-items:center;width:100%}
-    .poll{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:12px;padding:12px;border:2px solid var(--stroke);width:100%}
+    .poll{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(0,0,0,0.06);width:100%}
     .poll .question{flex:1;font-size:20px;text-align:center;font-weight:700}
     .poll .buttons{display:flex;gap:10px}
     .poll button{padding:8px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
     .poll .yes{background:var(--accent);color:#fff}
     .poll .no{background:#eee;color:#111}
 
-    .support-card{display:flex;gap:18px;align-items:center;background:var(--card);border-radius:18px;padding:18px;border:2px solid var(--stroke);width:100%}
+    /* كبرنا الصورة جنب "اختار" */
+    .support-card{display:flex;gap:18px;align-items:center;background:var(--card);border-radius:18px;padding:18px;border:1px solid rgba(0,0,0,0.06);width:100%}
     .support-left{flex:1}
     .support-left h2{margin:0 0 6px;font-size:32px;font-weight:900}
     .support-left p{margin:0;color:var(--muted);font-size:14px}
     .support-left .highlight{display:block;margin-top:8px;font-weight:700;font-size:16px}
     .support-btn{display:inline-block;margin-top:14px;padding:10px 18px;border-radius:10px;background:#111;color:#fff;text-decoration:none}
-    .support-illustration{width:150px;height:120px;display:flex;align-items:center;justify-content:center}
+    .support-illustration{width:220px;height:160px;display:flex;align-items:center;justify-content:center}
     .support-illustration img{max-width:100%;max-height:100%}
 
     footer{margin-top:26px;background:#3b3b3b;color:#fff;padding:28px;border-top:6px solid rgba(0,0,0,0.2)}
@@ -92,11 +110,10 @@
 
     .copyright{margin-top:18px;text-align:center;color:#ddd;font-size:14px}
 
-    /* make show-topics visible on desktop and fixed on screen */
+    /* زر الشو توبيك للموبايل בלבד */
     .show-topics{display:none;position:fixed;right:18px;bottom:120px;background:#fff;border-radius:12px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12);z-index:1000}
 
-    /* topics panel fixed and closable, works on desktop and mobile */
-    .topics-panel{position:fixed;right:12px;top:110px;width:300px;max-height:70vh;background:var(--card);border-radius:12px;padding:12px;border:2px solid var(--stroke);overflow:auto;z-index:1001;display:none}
+    .topics-panel{position:fixed;right:12px;top:110px;width:300px;max-height:70vh;background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(0,0,0,0.06);overflow:auto;z-index:1001;display:none}
     .topics-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1000}
 
     .logo-box,.nav-buttons a,.lang-btn,.topic-btn,.search,.article,.poll,.support-card{transition:all .25s cubic-bezier(.2,.9,.2,1)}
@@ -113,6 +130,7 @@
       :root{--content-width:92%;}
       .center{align-items:center}
       .topics-panel{right:6%;width:86%}
+      .show-topics{display:block}
     }
 
     @media (max-width:520px){
@@ -123,8 +141,7 @@
     }
 
     .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:80px;background:#111;color:#fff;padding:10px 16px;border-radius:8px;display:none;z-index:120}
-  @media (max-width:980px){ .show-topics{display:block;} }
-</style>
+  </style>
 </head>
 <body>
   <header>
@@ -140,7 +157,7 @@
         <a href="#">عنا</a>
       </nav>
 
-      <button class="lang-btn" id="langBtn" aria-label="تغيير اللغة"><img src="lang-icon.svg" alt="lang" style="width:20px;height:20px" /></button>
+      <button class="lang-btn" id="langBtn" aria-label="تغيير اللغة"><img src="lang-icon.svg" alt="lang" /></button>
     </div>
   </header>
 
@@ -153,11 +170,6 @@
           <button class="topic-btn" data-link="#topic3">الموضوع الفلاني</button>
           <button class="topic-btn" data-link="#topic4">الموضوع الفلاني</button>
           <button class="topic-btn" data-link="#topic5">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic6">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic7">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic8">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic9">الموضوع الفلاني</button>
-          <button class="topic-btn" data-link="#topic10">الموضوع الفلاني</button>
         </div>
       </aside>
 
@@ -175,18 +187,13 @@
             <h1>رأس الموضوع</h1>
             <p>التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل <a href="#">التفاصيل</a></p>
             <p>التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل <a href="#">التفاصيل</a></p>
-            <p>التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل التفاصيل <a href="#">التفاصيل</a></p>
-
-            <h2>اما عن رأس الموضوع</h2>
-            <p>التفاصيل التفاصيل التفاصيل <a href="#">التفاصيل</a> التفاصيل التفاصيل التفاصيل</p>
-            <p>التفاصيل التفاصيل التفاصيل التفاصيل <a href="#">التفاصيل</a></p>
 
             <div style="margin-top:12px;display:flex;justify-content:flex-start;gap:12px;align-items:flex-start">
               <div style="flex:1">
                 <p style="color:var(--muted)">كل الكلام والتنسيق هنا قابل للتعديل — الحجم يتغير بحسب المحتوى</p>
               </div>
-              <div style="width:160px;flex:0 0 160px">
-                <img src="article-illustration.png" alt="article image" style="max-width:100%;border-radius:8px;border:1px solid var(--stroke)" />
+              <div style="width:220px;flex:0 0 220px">
+                <img src="article-illustration.png" alt="article image" style="max-width:100%;border-radius:8px;border:1px solid rgba(0,0,0,0.06)" />
               </div>
             </div>
           </article>
@@ -231,7 +238,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-left">
-        <img src="logo-footer.png" alt="logo footer" />
+        <img src="logo-footer.svg" alt="logo footer" />
         <div style="margin-top:12px;color:#ccc">© 2025 t-sign</div>
         <div class="socials">
           <a href="#"><img src="icon-fb.svg" alt="fb" /></a>
@@ -301,12 +308,12 @@
       a.textContent = b.textContent;
       a.style.display = 'block';
       a.style.padding = '10px 6px';
-      a.style.borderBottom = '1px solid var(--stroke)';
+      a.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
       a.addEventListener('click', ()=> closeTopics());
       topicsPanelList.appendChild(a);
     });
 
-    // Show topics button & panel (fixed, closable) works on desktop and mobile
+    // Show topics button & panel (mobile only) - fixed position
     const showTopicsBtn = document.getElementById('showTopicsBtn');
     const topicsOverlay = document.getElementById('topicsOverlay');
     const topicsPanel = document.getElementById('topicsPanel');
@@ -373,12 +380,8 @@
 
     // responsive initial state
     window.addEventListener('resize', ()=>{
-      if(window.innerWidth > 980){
-        // ensure left column visible on desktop
-        document.getElementById('leftCol').style.display = 'block';
-      }else{
-        document.getElementById('leftCol').style.display = 'none';
-      }
+      if(window.innerWidth > 980){ document.getElementById('leftCol').style.display = 'block'; }
+      else{ document.getElementById('leftCol').style.display = 'none'; }
     });
     if(window.innerWidth <= 980){ document.getElementById('leftCol').style.display = 'none'; }
 
