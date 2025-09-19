@@ -141,90 +141,107 @@
  <a class="lang-btn" id="langBtn" aria-label="Change language" href="/language-page.html"><img src="lang-icon.svg" alt="lang" /></a>    </div>
     </div>
   </header>
-
- <!-- فقط محتوى الصفحة (ضع هذا داخل body) -->
+  <!-- بداية: جزء المحتوى فقط -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --page-bg: #dcdcdc;
     --card-bg: #ffffff;
-    --card-stroke: #e6e6e6;
-    --accent: #1565c0;
-    --max-width: 980px; /* غيّر لو تحب العرض */
-    --page-padding: 28px;
+    --card-stroke: rgba(0,0,0,0.15);
+   
+    --max-width: 1100px;
+    --card-padding: 28px;
+    --gap: 14px;
   }
 
   html,body{height:100%;margin:0;font-family:'Cairo',sans-serif;background:var(--page-bg);direction:rtl}
-  /* مركز المحتوى */
-  .page-wrap{
-    max-width:1200px;
-    margin:40px auto;
-    padding:var(--page-padding);
-  }
+  .center-wrap{max-width:var(--max-width);margin:36px auto;padding:0 16px;box-sizing:border-box;text-align:center}
 
-  /* الصندوق الكبير (المربع الخام) */
-  .article-card{
+  /* العنوان فوق المربع */
+  .support-title{font-weight:900;margin:8px 0 20px}
+  .support-title h1{font-size:clamp(30px,6vw,56px);margin:0}
+  .support-title .subtitle{font-size:22px;color:#111;margin-top:8px;font-weight:700}
+
+  /* الصندوق الكيرفي مع ستروك خفيف */
+  .support-card{
     background:var(--card-bg);
-    border:6px solid var(--card-stroke); /* سمك حاشية كما في الصورة */
-    border-radius:6px;
-    padding:48px;
+    border-radius:18px;
+    padding:var(--card-padding);
+    border:2px solid var(--card-stroke);
     box-shadow:none;
-    width:100%;
-    max-width:var(--max-width);
-    margin:0 auto;
     box-sizing:border-box;
+    /* يجعل الصندوق يتمدد عرضياً حسب الحاوية */
+    width:100%;
   }
 
-  /* رأس الموضوع: حجم كبير متجاوب */
-  .article-card h1{
-    margin:0 0 18px 0;
-    font-weight:900;
-    /* متجاوب: يتراوح بين 34px و 96px حسب حجم الشاشة */
-    font-size: clamp(34px, 8vw, 96px);
-    line-height:1;
-    text-align:right;
+  /* شبكة المواضيع: 3 أعمدة على الديسكتوب */
+  .topics-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:var(--gap);
+    align-items:stretch;
+    margin-top:6px;
   }
 
-  /* نص الموضوع */
-  .article-card .article-content{
-    font-size:16px;
-    line-height:1.75;
+  /* كل موضوع كمربع/زر داخلي ملائم */
+  .topic-item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 12px;
+    background:transparent;
+    border-radius:8px;
+    border:1px solid rgba(0,0,0,0.08);
+    box-shadow:0 6px 12px rgba(0,0,0,0.04);
+    font-weight:700;
+    text-decoration:none;
     color:#111;
-    text-align:right;
-    margin-top:8px;
+    transition:transform .16s ease,box-shadow .16s ease;
+    min-height:56px;
+  }
+  .topic-item:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,0.06)}
+
+  /* responsive: 2 columns on medium, 1 on small */
+  @media (max-width:900px){
+    .topics-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media (max-width:480px){
+    .topics-grid{grid-template-columns:repeat(1,minmax(0,1fr));}
   }
 
-  .article-content p{margin:10px 0;}
-  .article-content a{color:var(--accent);font-weight:700;text-decoration:underline;}
-  /* اذا دخلت عناوين فرعية داخل المقال */
-  .article-content h2{font-size:26px;margin:18px 0 8px 0;font-weight:700}
+  /* اختياري: تضييق المسافة داخل العنصر لو النص طويل */
+  .topic-item .label{padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-  /* تجاوب للموبايل */
-  @media (max-width:520px){
-    .page-wrap{margin:18px auto;padding:18px}
-    .article-card{padding:20px}
-    .article-card h1{font-size: clamp(22px, 10vw, 42px)}
-    .article-content{font-size:15px}
-  }
 </style>
 
-<div class="page-wrap">
-  <section class="article-card" role="article" aria-label="محتوى المقال">
-    <!-- ضع هنا عنوان المقال -->
-    <h1>Topic header</h1>
+<div class="center-wrap">
+  <div class="support-title" aria-hidden="false">
+    <h1>Help and support center</h1>
+    <div class="subtitle">t-sign.shop</div>
+  </div>
 
-    <!-- هنا تضع كل محتوى الموضوع — يمكنك لصق HTML كامل (p, a, h2, ul...) -->
-    <div class="article-content">
-      <p>Place your topic text here. You can use regular HTML tags like &lt;p&gt; و &lt;a&gt; و &lt;h2&gt; و &lt;ul&gt;.</p>
-      <p>Example link <a href="#">details</a>It appears in blue and bold as you requested.</p>
+  
+  <div class="support-card" role="region" aria-label="قائمة المواضيع">
+    <!-- شبكة المواضيع: أضف أو احذف <a> حسب حاجتك، كل عنصر له href مختلف -->
+    <div class="topics-grid">
+      <a class="topic-item" href="/support/topic-1"><span class="label">the topic 1</span></a>
+      <a class="topic-item" href="/support/topic-2"><span class="label">the topic 2</span></a>
+      <a class="topic-item" href="/support/topic-3"><span class="label">the topic 3</span></a>
 
-      <!-- مثال لعنوان فرعي -->
-      <h2>subtitle</h2>
-      <p>Extra Paragraph — The box will automatically expand according to the length of the content and will not add any additional items.</p>
+      <a class="topic-item" href="/support/topic-4"><span class="label">the topic 4</span></a>
+      <a class="topic-item" href="/support/topic-5"><span class="label">the topic 5</span></a>
+      <a class="topic-item" href="/support/topic-6"><span class="label">the topic 6</span></a>
+
+      <a class="topic-item" href="/support/topic-7"><span class="label">the topic 7</span></a>
+      <a class="topic-item" href="/support/topic-8"><span class="label">the topic 8</span></a>
+      <a class="topic-item" href="/support/topic-9"><span class="label">the topic 9</span></a>
+
+      <!-- أضف صفوف أكثر كما تريد — الصندوق سيتوسع طولياً تلقائياً -->
     </div>
-  </section>
+  </div>
 </div>
-
+<!-- نهاية جزء المحتوى -->
 
   <footer>
     <div class="footer-inner">
@@ -354,6 +371,7 @@
   </script>
 </body>
 </html>
+
 
 
 
